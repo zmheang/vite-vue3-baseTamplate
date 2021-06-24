@@ -4,11 +4,19 @@ import { router, setupRouter } from './router';
 
 import {
   create,
-  NButton
+  NButton,
+  NSwitch,
+  NSpace,
+  NMenu,
+  NLayoutHeader,
+  NLayoutFooter,
+  NLayoutContent,
+  NLayout,
+  NLayoutSider
 } from 'naive-ui'
 
 const naive = create({
-  components: [NButton]
+  components: [ NButton, NSwitch, NSpace, NMenu, NLayoutHeader, NLayoutFooter, NLayoutContent, NLayout, NLayoutSider ]
 })
 
 const app = createApp(App)
@@ -18,7 +26,6 @@ const app = createApp(App)
 setupRouter(app);
 
 app.use(naive)
-app.use(router)
 
 // try {
 //   await router.isReady()

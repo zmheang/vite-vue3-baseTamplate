@@ -1,38 +1,141 @@
 <template>
-  <div class="layout">
-    <div class="layout-left">left</div>
-    <div class="layout-right">
-      <router-view></router-view>
-    </div>
-  </div>
+  <n-space vertical>
+    <!-- <n-space> <n-switch v-model:value="inverted" /> inverted </n-space> -->
+    <n-layout style='width:100%;height:100%'>
+      <n-layout-header :inverted="inverted" bordered>
+        Header Header Header
+        <n-menu mode="horizontal" :inverted="inverted" :options="menuOptions" />
+      </n-layout-header>
+      <n-layout has-sider class="main-containor">
+        <n-layout-sider
+          bordered
+          show-trigger
+          collapse-mode="width"
+          :collapsed-width="64"
+          :width="240"
+          :native-scrollbar="false"
+          :inverted="inverted"
+          style="max-height: 320px"
+        >
+          <n-menu
+            :inverted="inverted"
+            :collapsed-width="64"
+            :collapsed-icon-size="22"
+            :options="menuOptions"
+          />
+        </n-layout-sider>
+        <n-layout style="max-height: 100%">
+          <router-view></router-view>
+        </n-layout>
+      </n-layout>
+      <n-layout-footer :inverted="inverted" bordered>
+        Footer Footer Footer
+      </n-layout-footer>
+    </n-layout>
+  </n-space>
 </template>
 
 <script>
-  export default {
-    name: "Layout"
-  }
+import { h, defineComponent, ref } from "vue";
+import { NIcon } from "naive-ui";
+import {
+  BookOutline as BookIcon,
+  PersonOutline as PersonIcon,
+  WineOutline as WineIcon,
+} from "@vicons/ionicons5";
+
+function renderIcon(icon) {
+  return () => h(NIcon, null, { default: () => h(icon) });
+}
+
+const menuOptions = [
+  {
+    label: "且听风吟",
+    key: "hear-the-wind-sing",
+    icon: renderIcon(BookIcon),
+  },
+  {
+    label: "1973年的弹珠玩具",
+    key: "pinball-1973",
+    icon: renderIcon(BookIcon),
+    disabled: true,
+    children: [
+      {
+        label: "鼠",
+        key: "rat",
+      },
+    ],
+  },
+  {
+    label: "寻羊冒险记",
+    key: "a-wild-sheep-chase",
+    disabled: true,
+    icon: renderIcon(BookIcon),
+  },
+  {
+    label: "舞，舞，舞",
+    key: "dance-dance-dance",
+    icon: renderIcon(BookIcon),
+    children: [
+      {
+        type: "group",
+        label: "人物",
+        key: "people",
+        children: [
+          {
+            label: "叙事者",
+            key: "narrator",
+            icon: renderIcon(PersonIcon),
+          },
+          {
+            label: "羊男",
+            key: "sheep-man",
+            icon: renderIcon(PersonIcon),
+          },
+        ],
+      },
+      {
+        label: "饮品",
+        key: "beverage",
+        icon: renderIcon(WineIcon),
+        children: [
+          {
+            label: "威士忌",
+            key: "whisky",
+          },
+        ],
+      },
+      {
+        label: "食物",
+        key: "food",
+        children: [
+          {
+            label: "三明治",
+            key: "sandwich",
+          },
+        ],
+      },
+      {
+        label: "过去增多，未来减少",
+        key: "the-past-increases-the-future-recedes",
+      },
+    ],
+  },
+];
+
+export default defineComponent({
+  setup() {
+    return {
+      inverted: ref(false),
+      menuOptions,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-  .layout{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    .layout-left{
-      width: 200px;
-      height: 100%;
-      background-color: #42b983;
-
-    }
-
-    .layout-right{
-      width: calc(100% - 200px);
-      height: 100%;
-
-    }
-
-  }
-
+.main-containor {
+  width: 100%;
+  height: calc(100vh - 74px);
+}
 </style>
