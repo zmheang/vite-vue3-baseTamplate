@@ -1,10 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { router, setupRouter } from './router';
+import { setupRouter } from './router';
 
 import {
   create,
   NButton,
+  NIcon,
   NSwitch,
   NSpace,
   NMenu,
@@ -12,11 +13,24 @@ import {
   NLayoutFooter,
   NLayoutContent,
   NLayout,
-  NLayoutSider
+  NLayoutSider,
+  NLoadingBarProvider
 } from 'naive-ui'
 
 const naive = create({
-  components: [ NButton, NSwitch, NSpace, NMenu, NLayoutHeader, NLayoutFooter, NLayoutContent, NLayout, NLayoutSider ]
+  components: [
+    NButton,
+    NIcon,
+    NSwitch,
+    NSpace,
+    NMenu,
+    NLayoutHeader,
+    NLayoutFooter,
+    NLayoutContent,
+    NLayout,
+    NLayoutSider,
+    NLoadingBarProvider
+  ]
 })
 
 const app = createApp(App)
@@ -34,7 +48,5 @@ app.use(naive)
 //   // 报错
 //   console.log('router is error:' + err)
 // }
-
-
 
 app.mount('#app', true)
