@@ -23,7 +23,7 @@ export default [
     redirect: '/home/index',
     children: [{
       key: utils.getUUID(),
-      path: 'index',
+      path: '/home/index',
       label: 'home-1',
       component: () => import('@/views/home/index.vue'),
       meta: { title: 'home', icon: 'home' }

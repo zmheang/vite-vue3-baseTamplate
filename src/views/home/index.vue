@@ -9,18 +9,19 @@
 </template>
 
 <script>
-  import { useLoadingBar } from 'naive-ui'
+  import {useLoadingBar} from 'naive-ui'
+
   export default {
     setup() {
       const loadingBar = useLoadingBar()
       return {
-        handleStart () {
+        handleStart() {
           loadingBar.start()
         },
-        handleFinish () {
+        handleFinish() {
           loadingBar.finish()
         },
-        handleError () {
+        handleError() {
           loadingBar.error()
         }
       }

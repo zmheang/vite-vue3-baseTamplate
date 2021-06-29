@@ -1,10 +1,10 @@
 <template>
-<div>7</div>
+  <div>finance</div>
 </template>
 
 <script>
   export default {
-    name: "wait_2"
+    name: "finance-1"
   }
 </script>
 

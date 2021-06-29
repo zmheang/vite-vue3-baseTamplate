@@ -3,9 +3,11 @@ import home from './modules/home'
 import poems from './modules/poems'
 import wait from './modules/wait'
 import login from './modules/login'
+import finance from './modules/finance'
 
 const routes = [
   ...home,
+  ...finance,
   ...login,
   ...wait,
   ...poems
